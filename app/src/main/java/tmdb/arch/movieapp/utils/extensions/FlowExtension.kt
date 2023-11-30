@@ -8,9 +8,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-fun <T> Flow<T>.collectRepeatOnStart(owner:LifecycleOwner,block:(T)->Unit)=
+fun <T> Flow<T>.collectRepeatOnStart(owner: LifecycleOwner, block: (T) -> Unit) =
     owner.lifecycleScope.launch {
-        owner.lifecycle.repeatOnLifecycle(state = Lifecycle.State.STARTED){
+        owner.lifecycle.repeatOnLifecycle(state = Lifecycle.State.STARTED) {
             collectLatest(block)
         }
     }
